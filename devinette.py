@@ -17,9 +17,9 @@ def main_devinette()->None:
 
 
     while en_cours :
-        proposition = int(input("Joueur 2 : Veuillez choisir un nombre entre " + str(min) + "et " + str(limite) + " : "))
-        while not proposition <= limite :
-            proposition = int(input("Joueur 2 : Votre proposition dois être entre " + str(min) + "et " + str(limite) + " : "))
+        proposition = int(input("Joueur 2 : Veuillez choisir un nombre entre " + str(min) + " et " + str(limite) + " : "))
+        while not proposition <= limite and proposition >= min:
+            proposition = int(input("Joueur 2 : Votre proposition dois être entre " + str(min) + " et " + str(limite) + " : "))
         
         reponse = input("\nJoueur 1 : Votre réponse (trop petit, trop grand ou c'est gagné) : ")
         
@@ -27,22 +27,27 @@ def main_devinette()->None:
         if reponse == "trop petit" and not proposition < nombre_mystere :
             print("Joueur 1 : Vous avez triché !")
             #terminer le jeu et ajouter les scores au joueur 2
+            en_cours = False
 
         elif reponse == "trop grand" and not proposition > nombre_mystere :
             print("Joueur 1 : Vous avez triché !")
             #terminer le jeu et ajouter les scores au joueur 2
+            en_cours = False
 
         elif reponse == "c'est gagné" and not proposition == nombre_mystere :
             print("Joueur 1 : Vous avez triché !")
             #terminer le jeu et ajouter les scores au joueur 2
+            en_cours = False
 
         else :
             if reponse == "trop petit":
                 min = proposition
             if reponse == "trop grand":
                 limite = proposition
-            if reponse == "c'est gagné":
+            # if reponse == "c'est gagné":
                 #terminer le jeu et ajouter les scores au joueur 2
+                en_cours = False
+                
 
 if __name__ == "__main__":
     main_devinette()
