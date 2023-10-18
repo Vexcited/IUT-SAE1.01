@@ -20,13 +20,15 @@ def main_devinette()->None:
 
 
     while en_cours :
+        # Separateurs
         print("\n"+"-"*((os.get_terminal_size().columns//2)-4), "TOUR", nb_tour, "-"*((os.get_terminal_size().columns//2)-4))
 
+        # Proposition
         proposition = int(input("\nJoueur 2 : Veuillez choisir un nombre entre " + str(min) + " et " + str(limite) + " : "))
         while not proposition <= limite and proposition >= min:
             proposition = int(input("\nJoueur 2 : Votre proposition dois être entre " + str(min) + " et " + str(limite) + " : "))
         
-        reponse = input("\nJoueur 1 : Votre réponse (trop petit, trop grand ou c'est gagné) : ")
+        reponse = input("\nJoueur 1 : Votre réponse (trop petit, trop grand ou c'est gagné) : ").strip()
         
         # ANTI CHEAT
         if reponse == "trop petit" and not proposition < nombre_mystere :
@@ -49,8 +51,8 @@ def main_devinette()->None:
                 min = proposition
             if reponse == "trop grand":
                 limite = proposition
-            # if reponse == "c'est gagné":
-                #terminer le jeu et ajouter les scores au joueur 2
+            if reponse == "c'est gagné":
+                # ajouter les scores au joueur 2
                 en_cours = False
         
         nb_tour += 1
