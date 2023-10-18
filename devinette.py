@@ -1,4 +1,5 @@
 from getpass import getpass
+import os
 
 def main_devinette()->None:
     """Procédure de point d'entrée pour le jeu de devinette"""
@@ -7,9 +8,11 @@ def main_devinette()->None:
     proposition : int
     limite : int
     min : int
+    nb_tour : int
 
     min = 1
     limite = 100
+    nb_tour = 1
     en_cours = True
 
     # Le joueur 2 doit trouver le nombre qui se trouve entre min et limite
@@ -17,9 +20,11 @@ def main_devinette()->None:
 
 
     while en_cours :
-        proposition = int(input("Joueur 2 : Veuillez choisir un nombre entre " + str(min) + " et " + str(limite) + " : "))
+        print("\n"+"-"*((os.get_terminal_size().columns//2)-4), "TOUR", nb_tour, "-"*((os.get_terminal_size().columns//2)-4))
+
+        proposition = int(input("\nJoueur 2 : Veuillez choisir un nombre entre " + str(min) + " et " + str(limite) + " : "))
         while not proposition <= limite and proposition >= min:
-            proposition = int(input("Joueur 2 : Votre proposition dois être entre " + str(min) + " et " + str(limite) + " : "))
+            proposition = int(input("\nJoueur 2 : Votre proposition dois être entre " + str(min) + " et " + str(limite) + " : "))
         
         reponse = input("\nJoueur 1 : Votre réponse (trop petit, trop grand ou c'est gagné) : ")
         
@@ -47,6 +52,8 @@ def main_devinette()->None:
             # if reponse == "c'est gagné":
                 #terminer le jeu et ajouter les scores au joueur 2
                 en_cours = False
+        
+        nb_tour += 1
                 
 
 if __name__ == "__main__":
