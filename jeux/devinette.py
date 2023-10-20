@@ -17,7 +17,7 @@ def main_devinette()->None:
 
     # Le joueur 2 doit trouver le nombre qui se trouve entre min et limite
     nombre_mystere = int(getpass("Joueur 1 : Choisissez le nombre à trouver pour le jeu : "))
-
+    
 
     while en_cours :
         # Separateurs
