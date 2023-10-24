@@ -1,3 +1,7 @@
 {
-  "cSpell.language": "fr"
+  "cSpell.language": "fr",
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.autopep8"
+  },
+  "python.formatting.provider": "none"
 }
