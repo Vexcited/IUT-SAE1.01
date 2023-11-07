@@ -48,9 +48,9 @@ def main_devinette()->None:
 
         else :
             if reponse == "trop petit":
-                min = proposition
+                min = proposition + 1
             if reponse == "trop grand":
-                limite = proposition
+                limite = proposition - 1
             if reponse == "c'est gagné":
                 # ajouter les scores au joueur 2
                 en_cours = False
