@@ -1,7 +1,4 @@
 import os
-import sys
-
-sys.path.append("./utils")
 
 from utils.centrer import centrer
 
@@ -11,10 +8,10 @@ def affichier_alumettes(nb_alumettes : int)->None:
         sortie : rien
     """
     print("")
-    print("O " * nb_alumettes)
-    print("| " * nb_alumettes)
-    print("| " * nb_alumettes)
-    print("| " * nb_alumettes)
+    print(centrer("O " * nb_alumettes))
+    print(centrer("| " * nb_alumettes))
+    print(centrer("| " * nb_alumettes))
+    print(centrer("| " * nb_alumettes))
 
 
 
@@ -29,7 +26,7 @@ def tour(nb_tour: int, joueur: int, nb_alumettes: int)->int:
     
     # Separateurs
     print("\n"+"-"*((os.get_terminal_size().columns//2)-4), "TOUR", nb_tour, "-"*((os.get_terminal_size().columns//2)-4))
-    print(centrer("TOUR"))
+
     affichier_alumettes(nb_alumettes)
 
     choix_alumettes = int(input("\nJoueur " + str(joueur) + " : Combien d'alumettes voulez vous retirer du jeu ? (1, 2 ou 3) : "))
@@ -65,11 +62,11 @@ def main_alumettes()->None:
     while en_cours:
         # TOUR DU JOUEUR 
 
-        nb_alumettes = tour(nb_tour, nb_tour % 2, nb_alumettes)
+        nb_alumettes = tour(nb_tour, ((nb_tour+1) % 2)+1, nb_alumettes)
 
         if nb_alumettes == -1:
             en_cours = False
-            #ajouter les scores au joueur 2
+            #ajouter les scores au joueur
 
         # fin de tour
         nb_tour += 1
