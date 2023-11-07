@@ -1,4 +1,9 @@
 import os
+import sys
+
+sys.path.append("./utils")
+
+from utils.centrer import centrer
 
 def affichier_alumettes(nb_alumettes : int)->None:
     """Procédure qui permet d'afficher le nombre d'alumettes restant en jeu
@@ -24,7 +29,7 @@ def tour(nb_tour: int, joueur: int, nb_alumettes: int)->int:
     
     # Separateurs
     print("\n"+"-"*((os.get_terminal_size().columns//2)-4), "TOUR", nb_tour, "-"*((os.get_terminal_size().columns//2)-4))
-
+    print(centrer("TOUR"))
     affichier_alumettes(nb_alumettes)
 
     choix_alumettes = int(input("\nJoueur " + str(joueur) + " : Combien d'alumettes voulez vous retirer du jeu ? (1, 2 ou 3) : "))
