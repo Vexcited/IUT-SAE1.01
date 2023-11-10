@@ -1,5 +1,5 @@
 from getpass import getpass
-import os
+from utils.afficher_tour import afficher_tour
 
 def main_devinette()->None:
     """Procédure de point d'entrée pour le jeu de devinette"""
@@ -21,7 +21,7 @@ def main_devinette()->None:
 
     while en_cours :
         # Separateurs
-        print("\n"+"-"*((os.get_terminal_size().columns//2)-4), "TOUR", nb_tour, "-"*((os.get_terminal_size().columns//2)-4))
+        afficher_tour(nb_tour)
 
         # Proposition
         proposition = int(input("\nJoueur 2 : Veuillez choisir un nombre entre " + str(min) + " et " + str(limite) + " : "))
