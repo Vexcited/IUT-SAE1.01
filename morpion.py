@@ -1,4 +1,4 @@
-import os
+from utils.afficher_tour import afficher_tour
 
 def afficher_morpion(jeu : list[list[str]]):
     """procedure """
@@ -16,4 +16,4 @@ def main_morpion()->None:
             [" ", " ", " "]]
 
     while en_cours:
-        print("\n"+"-"*((os.get_terminal_size().columns//2)-4), "TOUR", nb_tour, "-"*((os.get_terminal_size().columns//2)-4))
+        afficher_tour(nb_tour)

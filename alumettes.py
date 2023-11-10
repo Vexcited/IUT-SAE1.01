@@ -1,5 +1,4 @@
-import os
-
+from utils.afficher_tour import afficher_tour
 from utils.centrer import centrer
 
 def affichier_alumettes(nb_alumettes : int)->None:
@@ -25,7 +24,7 @@ def tour(nb_tour: int, joueur: int, nb_alumettes: int)->int:
     choix_alumettes : int
     
     # Separateurs
-    print("\n"+"-"*((os.get_terminal_size().columns//2)-4), "TOUR", nb_tour, "-"*((os.get_terminal_size().columns//2)-4))
+    afficher_tour(nb_tour)
 
     affichier_alumettes(nb_alumettes)
 
