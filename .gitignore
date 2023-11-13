@@ -1,1 +1,5 @@
+# Cache Python
 __pycache__
+
+# Fichier de la base de données.
+db.json
