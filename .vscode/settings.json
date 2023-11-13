@@ -1,7 +1,10 @@
 {
-  "cSpell.language": "fr",
-  "[python]": {
-    "editor.defaultFormatter": "ms-python.autopep8"
-  },
-  "python.formatting.provider": "none"
+    "cSpell.language": "fr",
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.autopep8"
+    },
+    "editor.detectIndentation": false,
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4,
+    "python.analysis.typeCheckingMode": "strict"
 }
