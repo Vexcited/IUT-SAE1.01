@@ -63,27 +63,27 @@ def main_morpion()->None:
         afficher_morpion(morpion)
         
         # vérification de victoire
-        if morpion[0][0] == morpion[1][1] == morpion[2][2] != " ":
+        if morpion[0][0] == morpion[1][1] and morpion[0][0] == morpion[2][2] and morpion[0][0] != " ":
             print("Joueur", ((nb_tour+1) % 2)+1, ":", "vous avez gagné !")
 
             en_cours = False
             # ajout des scores
 
-        if morpion[0][2] == morpion[1][1] == morpion[2][0] != " ":
+        if morpion[0][2] == morpion[1][1] and morpion[0][2] == morpion[2][0] and morpion[0][2] != " ":
             print("Joueur", ((nb_tour+1) % 2)+1, ":", "vous avez gagné !")
 
             en_cours = False
             # ajout des scores
 
-        for i in range(0,2):
-            if morpion[i][0] == morpion[i][1] == morpion[i][2] != " ":
+        for i in range(0,3):
+            if morpion[i][0] == morpion[i][1] and morpion[i][0] == morpion[i][2] and morpion[i][0] != " ":
                 print("Joueur", ((nb_tour+1) % 2)+1, ":", "vous avez gagné !")
 
                 en_cours = False
                 # ajout des scores
 
-        for i in range(0,2):
-            if morpion[0][i] == morpion[1][i] == morpion[2][i] != " ":
+        for i in range(0,3):
+            if morpion[0][i] == morpion[1][i] and morpion[0][i] == morpion[2][i] and morpion[0][i] != " ":
                 print("Joueur", ((nb_tour+1) % 2)+1, ":", "vous avez gagné !")
 
                 en_cours = False
