@@ -2,6 +2,8 @@ from utils.centrer import centrer
 from utils.effacer_ecran import effacer_ecran
 from joueurs.session import initialiser_session, supprimer_session
 
+from devinette import main_devinette
+
 if __name__ == "__main__":
     sélection: str
     sélection = ""
@@ -24,6 +26,10 @@ if __name__ == "__main__":
         print("")  # Saut de ligne
 
         sélection = input("Sélection(1,2,3,Q) : ")
+
+        if sélection == "1":
+            effacer_ecran()
+            main_devinette()
 
     # On efface les utilisateurs de la
     # session de jeu avant de quitter.
