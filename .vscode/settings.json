@@ -1,7 +1,7 @@
 {
     "cSpell.language": "fr",
     "[python]": {
-        "editor.defaultFormatter": "ms-python.autopep8"
+        "editor.formatOnSave": false
     },
     "editor.detectIndentation": false,
     "editor.insertSpaces": true,

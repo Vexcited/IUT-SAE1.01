@@ -1,15 +1,12 @@
-from typing import TypedDict, Optional  # Pour le typage
+from typing import TypedDict, Optional, Literal # Pour le typage
 import json
 import os
 
 from joueurs.selection import définir_nom_joueur
 
-
-class JoueurBDD(TypedDict):
-    score: int
-
-
 class PartieBDD(TypedDict):
+    type_jeu: Literal["devinette", "allumettes", "morpion"]
+
     joueur1: str
     """
     Nom du joueur 1. Le nom correspond à la clé du dictionnaire `joueurs`
@@ -47,7 +44,6 @@ class SessionBDD(TypedDict):
 
 
 class RacineBDD(TypedDict):
-    joueurs: dict[str, JoueurBDD]
     parties: list[PartieBDD]
     session_actuelle: Optional[SessionBDD]
     """
@@ -71,9 +67,8 @@ def lire_bdd() -> RacineBDD:
     if not os.path.isfile(chemin_bdd):
         # sinon, on initialize le fichier
         with open(chemin_bdd, "w") as f:
-            # le json contient deux propriétés: joueurs et parties,
-            # on les initialise à vide
-            f.write('{ "joueurs": {}, "parties": [], "session_actuelle": null }')
+            # le json contient parties, on l'initialise à vide
+            f.write('{ "parties": [], "session_actuelle": null }')
 
     # on ouvre le fichier en lecture
     with open(chemin_bdd, "r") as f:
