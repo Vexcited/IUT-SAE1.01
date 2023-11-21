@@ -47,12 +47,14 @@ def main_morpion()->None:
     print("A chaque case correspond un chiffre qu'il faut rentrer dans les choix pour choisir une case")
 
     while en_cours:
+        num_joueur = str(((nb_tour+1) % 2)+1)
+
         afficher_tour(nb_tour)
 
-        choix = int(input("Joueur " + str(((nb_tour+1) % 2)+1) + " : Veuillez choisir une case : "))
+        choix = int(input("Joueur " + num_joueur + " : Veuillez choisir une case : "))
 
         while morpion[choix//3][choix%3] != " ":
-            choix = int(input("Joueur " + str(((nb_tour+1) % 2)+1) + " : Veuillez choisir une case : "))
+            choix = int(input("Joueur " + num_joueur + " : Veuillez choisir une case : "))
 
         if ((nb_tour+1) % 2)+1 == 1:
             morpion[choix//3][choix%3] = "O"
