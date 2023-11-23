@@ -1,5 +1,5 @@
 # Cache Python
 __pycache__
 
-# Fichier de la base de données.
-db.json
+# Fichier où sont stockés les scores.
+scores.dat
