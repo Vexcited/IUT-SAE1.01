@@ -1,6 +1,6 @@
 from os import system, name
 
-def effacer_ecran () -> None:
+def effacer_ecran() -> None:
   """
   Procédure qui permet "d'effacer" le contenu du terminal.
   Inspiré de [cette réponse sur StackOverflow](https://stackoverflow.com/a/44740224).

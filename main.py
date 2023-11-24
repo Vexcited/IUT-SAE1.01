@@ -1,39 +1,34 @@
-from utils.centrer import centrer
 from utils.effacer_ecran import effacer_ecran
-from joueurs.session import initialiser_session, supprimer_session
-
-from devinette import main_devinette
+from utils.lanceur import préJeu
+from utils.titre import faire_titre
 
 if __name__ == "__main__":
     sélection: str
     sélection = ""
 
-    # On initialise la session de jeu avant
-    # de commencer le programme.
-    initialiser_session()
-    while (sélection.upper() != "Q"):
+    while (sélection != "Q"):
         effacer_ecran()
 
-        print(centrer("Bienvenue, dans la sélection de mini-jeux !"))
-        print("")  # Saut de ligne
+        faire_titre("Bienvenue, dans la sélection de mini-jeux !"
+                    + "\nChoisissez un jeu parmi les suivants.")
 
-        print(centrer("1: Devinette"))
-        print(centrer("2: Allumettes"))
-        print(centrer("3: Morpion"))
-        print("")  # Saut de ligne
+        print("\t", "1 │ Devinette")
+        print("\t", "2 │ Allumettes")
+        print("\t", "3 │ Morpion")
+        print("\t", "4 │ Puissance 4")
 
-        print(centrer("Q: Sortir"))
-        print("")  # Saut de ligne
+        print("\n\t", "Q │ Quitter")
 
-        sélection = input("Sélection(1,2,3,Q) : ")
+        sélection = input("\n\n-> Sélection(1,2,3,4,Q) : ").strip().upper()
 
         if sélection == "1":
-            effacer_ecran()
-            main_devinette()
-
-    # On efface les utilisateurs de la
-    # session de jeu avant de quitter.
-    supprimer_session()
+            préJeu("devinette")
+        elif sélection == "2":
+            préJeu("allumettes")
+        elif sélection == "3":
+            préJeu("morpion")
+        elif sélection == "4":
+            préJeu("puissance_4")
 
     # On efface l'écran pour avoir un terminal
     # propre lors de la fermeture du programme.

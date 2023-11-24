@@ -4,11 +4,9 @@ from utils.titre import séparateur_avec_titre
 def calcul_score(nombre_tour : int) -> int:
     """
     Calcule le score du joueur 2 en fonction du nombre de tours.
-    Si 
     """
 
     score : int
-
     score = int(100 * (1 / nombre_tour))
     return score
 
@@ -26,12 +24,14 @@ def main_devinette(joueur1: str, joueur2: str) -> None:
     nombre_tour : int
     jeu_en_cours : bool
     triche: bool
+    score : int
 
     min = 1
     max = 100 # On défini la limite du nombre mystère
     nombre_tour = 1
     jeu_en_cours = True
     triche = False
+    score = 0
 
     # On demande au joueur 1 de sélectionner le nombre mystère
     # que le joueur 2 devra trouver entre 1 et 100
@@ -77,8 +77,11 @@ def main_devinette(joueur1: str, joueur2: str) -> None:
         print("\n" + joueur1 + ", vous avez triché !")
         print(joueur2 + ", vous avez gagné mais aucun point ne vous est attribué.")
     else:
+        score = calcul_score(nombre_tour)
         print("\n" + joueur2 + ", vous avez trouvé le nombre mystère en " + str(nombre_tour) + " tours !")
-        print("Votre score est de " + str(calcul_score(nombre_tour)) + " points !") 
+        print("Votre score est de " + str(score) + " points !")
+
+        input("\nAppuyez sur Entrée pour continuer...") 
 
 if __name__ == "__main__":
     main_devinette("Joueur1", "Joueur2")
