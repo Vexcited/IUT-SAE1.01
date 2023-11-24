@@ -13,13 +13,13 @@ def afficher_morpion(morpion : list[list[str]])->None:
     for i in range(0,2):
 
         # affichage de la ligne i
-        print(centrer(morpion[i][0] + " | " + morpion[i][1] + " | " + morpion[i][2]))
+        print(centrer(morpion[i][0] + " \u2502 " + morpion[i][1] + " \u2502 " + morpion[i][2]))
 
         # séparateur entre 2 lignes
-        print(centrer("-----------"))
+        print(centrer("\u2500\u2500\u2500\u253C\u2500\u2500\u2500\u253C\u2500\u2500\u2500"))
 
     # affichage de la dernière ligne
-    print(centrer(morpion[2][0] + " | " + morpion[2][1] + " | " + morpion[2][2]))
+    print(centrer(morpion[2][0] + " \u2502 " + morpion[2][1] + " \u2502 " + morpion[2][2]))
 
 def main_morpion()->None:
     """Procédure de point d'entrée pour le jeu de morpion"""
