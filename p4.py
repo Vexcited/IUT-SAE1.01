@@ -27,7 +27,13 @@ def main_p4(joueur1 : str, joueur2 : str)->None:
     i : int
     choix : int
 
-    jeu = [["."] * 7] * 6
+    jeu = [[".", ".", ".", ".", ".", ".", "."],
+           [".", ".", ".", ".", ".", ".", "."],
+           [".", ".", ".", ".", ".", ".", "."],
+           [".", ".", ".", ".", ".", ".", "."],
+           [".", ".", ".", ".", ".", ".", "."],
+           [".", ".", ".", ".", ".", ".", "."]]
+    
     en_cours = True
     nb_tour = 1
     ligne_en_jeu = [i for i in range(1, 8)]
@@ -37,6 +43,11 @@ def main_p4(joueur1 : str, joueur2 : str)->None:
 
         afficher_p4(jeu)
 
+        # test si le jeu est plein 
+        if ligne_en_jeu == []:
+            print("égalité")
+            en_cours = False
+
         # Choix du joueur 1
         choix = int(input("\033[1;33m" + joueur1 + "\033[0m" + " veuillez choisir une ligne entre " + str(ligne_en_jeu) + ": "))
 
@@ -44,30 +55,51 @@ def main_p4(joueur1 : str, joueur2 : str)->None:
             choix = int(input("\033[1;33m" + joueur1 + "\033[0m" + " veuillez choisir une ligne entre " + str(ligne_en_jeu) + ": "))
 
         # Test pour savoir a quel endroit de la colonne choisie le pion dois se mettre
-        for i in range(0, 7):
-            if jeu[i][choix-1] == ".":
-                jeu[i][choix-1] = "\033[1;33mO\033[0m"
+        if jeu[5][choix-1] == '.':
+            jeu[5][choix-1] = "\033[1;33mO\033[0m"
+        else:
+            i = 0
+            while i >= 0 and jeu[5-i][choix-1] != ".":
+                i += 1
+            jeu[5-i][choix-1] = "\033[1;33mO\033[0m"
+
+        # test si la colonne est pleine
+        if jeu[0][choix-1] != ".":
+            ligne_en_jeu.remove(choix)
 
         nb_tour += 1
 
-        # ----------------------------------------------------------
+        # ------------------------------------------------------------------------------------
 
         afficher_tour(nb_tour)
 
         afficher_p4(jeu)
 
+        # test si le jeu est plein 
+        if ligne_en_jeu == []:
+            print("égalité")
+            en_cours = False
+
+        # Choix du joueur 2
         choix = int(input("\033[1;31m" + joueur2 + "\033[0m" + " veuillez choisir une ligne entre " + str(ligne_en_jeu) + ": "))
 
         while choix not in ligne_en_jeu :
             choix = int(input("\033[1;31m" + joueur2 + "\033[0m" + " veuillez choisir une ligne entre " + str(ligne_en_jeu) + ": "))
 
-        for i in range(0, 7):
-            if jeu[i][choix-1] == ".":
-                jeu[i][choix-1] = "\033[1;31mO\033[0m"
+        # Test pour savoir a quel endroit de la colonne choisie le pion dois se mettre
+        if jeu[5][choix-1] == '.':
+            jeu[5][choix-1] = "\033[1;31mO\033[0m"
+        else:
+            i = 0
+            while i >= 0 and jeu[5-i][choix-1] != ".":
+                i += 1
+            jeu[5-i][choix-1] = "\033[1;31mO\033[0m"
+
+        # test si la colonne est pleine
+        if jeu[0][choix-1] != ".":
+            ligne_en_jeu.remove(choix)
 
         nb_tour += 1
-
-        # en_cours = False
 
 
 if __name__ == "__main__":
