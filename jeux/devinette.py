@@ -1,5 +1,5 @@
 from getpass import getpass
-from utils.titre import séparateur_avec_titre
+from utils.afficher_tour import afficher_tour
 
 def calcul_score(nombre_tour : int) -> int:
     """
@@ -38,7 +38,7 @@ def main_devinette(joueur1: str, joueur2: str) -> None:
     nombre_mystère = int(getpass(joueur1 + ", choisissez le nombre mystère (entre 1 et 100) que " + joueur2 + " devra trouver: "))
 
     while jeu_en_cours:
-        print(séparateur_avec_titre("Tour " + str(nombre_tour)))
+        afficher_tour(nombre_tour)
 
         # Proposition
         proposition = int(input("\n" + joueur2 + ", veuillez choisir un nombre entre " + str(min) + " et " + str(max) + " : "))
