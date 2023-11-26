@@ -1,21 +1,27 @@
 from utils.afficher_tour import afficher_tour
+from utils.centrer import centrer
 
 def afficher_p4(jeu:list[list[str]])->None:
+    """
+    Procédure qui permet d'afficher proprement le jeu
+        entrée : le jeun un tableau de tableau de chaine de caractères
+    """
     i : int
     j : int
+    ligne : str
 
-    print("\u256D\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u256E")
+    ligne = ""
+    print(centrer("\u256D\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u256E"))
     for i in range(0, 6):
-        print("\u2502", end = "")
-        print(" ", end = "")
+        ligne = ""
+        ligne += "\u2502 "
 
         for j in range(0, 7):
-            print(jeu[i][j], end = "")
-            print(" ", end = "")
+            ligne += jeu[i][j] + " "
 
-        print("\u2502", end = "")
-        print("")
-    print("\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518")
+        ligne += "\u2502 "
+        print(centrer(ligne))
+    print(centrer("\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518"))
 
 def main_p4(joueur1 : str, joueur2 : str)->None:
     """Procedure de point d'entrée pour le jeu de puissance 4"""
@@ -25,6 +31,7 @@ def main_p4(joueur1 : str, joueur2 : str)->None:
     nb_tour : int
     ligne_en_jeu : list[int]
     i : int
+    j : int
     choix : int
 
     jeu = [[".", ".", ".", ".", ".", ".", "."],
@@ -67,8 +74,46 @@ def main_p4(joueur1 : str, joueur2 : str)->None:
         if jeu[0][choix-1] != ".":
             ligne_en_jeu.remove(choix)
 
-        nb_tour += 1
+        # Vérification si le joueur a gagné
 
+        ## Test ligne gagnante
+        for i in range(0, 3):
+            for j in range(0, 6):
+                if jeu[i][j] == jeu[i+1][j] and jeu[i+2][j] == jeu[i+3][j] and jeu[i][j] == jeu[i+3][j] and jeu[i][j] != ".":
+                    # le joueur qui viens de jouer a gagné
+                    # ajout des scores
+                    print(joueur1, "a gagné")
+                    en_cours = False
+
+        ## Test colonne gagnante
+        for i in range(0, 6):
+            for j in range(0, 3):
+                if jeu[i][j] == jeu[i][j+1] and jeu[i][j+2] == jeu[i][j+3] and jeu[i][j] == jeu[i][j+3] and jeu[i][j] != ".":
+                    # le joueur qui viens de jouer a gagné
+                    # ajout des scores
+                    print(joueur1, "a gagné")
+                    en_cours = False
+
+        ## Test diagonales gagnantes
+        ### diagonale : haut de droite -> bas a gauche
+        for i in range(0, 3):
+            for j in range(0, 4):
+                if jeu[i][j] == jeu[i+1][j+1] and jeu[i+2][j+2] == jeu[i+3][j+3] and jeu[i][j] == jeu[i+3][j+3] and jeu[i][j] != ".":
+                    # le joueur qui viens de jouer a gagné
+                    # ajout des scores
+                    print(joueur1, "a gagné")
+                    en_cours = False
+
+        ### diagonale : haut a gauche -> bas a droite
+        for i in range(0, 3):
+            for j in range(0, 4):
+                if jeu[i+3][j] == jeu[i+2][j+1] and jeu[i+1][j+2] == jeu[i][j+3] and jeu[i+3][j] == jeu[i][j+3] and jeu[i+3][j] != ".":
+                    # le joueur qui viens de jouer a gagné
+                    # ajout des scores
+                    print(joueur1, "a gagné")
+                    en_cours = False
+
+        nb_tour += 1
         # ------------------------------------------------------------------------------------
 
         afficher_tour(nb_tour)
@@ -98,6 +143,45 @@ def main_p4(joueur1 : str, joueur2 : str)->None:
         # test si la colonne est pleine
         if jeu[0][choix-1] != ".":
             ligne_en_jeu.remove(choix)
+        
+        # Vérification si le joueur a gagné
+
+        ## Test ligne gagnante
+        for i in range(0, 3):
+            for j in range(0, 6):
+                if jeu[i][j] == jeu[i+1][j] and jeu[i+2][j] == jeu[i+3][j] and jeu[i][j] == jeu[i+3][j] and jeu[i][j] != ".":
+                    # le joueur qui viens de jouer a gagné
+                    # ajout des scores
+                    print(joueur1, "a gagné")
+                    en_cours = False
+
+        ## Test colonne gagnante
+        for i in range(0, 6):
+            for j in range(0, 3):
+                if jeu[i][j] == jeu[i][j+1] and jeu[i][j+2] == jeu[i][j+3] and jeu[i][j] == jeu[i][j+3] and jeu[i][j] != ".":
+                    # le joueur qui viens de jouer a gagné
+                    # ajout des scores
+                    print(joueur1, "a gagné")
+                    en_cours = False
+
+        ## Test diagonales gagnantes
+        ### diagonale : haut de droite -> bas a gauche
+        for i in range(0, 3):
+            for j in range(0, 4):
+                if jeu[i][j] == jeu[i+1][j+1] and jeu[i+2][j+2] == jeu[i+3][j+3] and jeu[i][j] == jeu[i+3][j+3] and jeu[i][j] != ".":
+                    # le joueur qui viens de jouer a gagné
+                    # ajout des scores
+                    print(joueur1, "a gagné")
+                    en_cours = False
+
+        ### diagonale : haut a gauche -> bas a droite
+        for i in range(0, 3):
+            for j in range(0, 4):
+                if jeu[i+3][j] == jeu[i+2][j+1] and jeu[i+1][j+2] == jeu[i][j+3] and jeu[i+3][j] == jeu[i][j+3] and jeu[i+3][j] != ".":
+                    # le joueur qui viens de jouer a gagné
+                    # ajout des scores
+                    print(joueur1, "a gagné")
+                    en_cours = False
 
         nb_tour += 1
 
