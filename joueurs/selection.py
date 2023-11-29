@@ -12,9 +12,8 @@ def définir_nom_joueur(index: int) -> str:
     nom_utilisateur: str
     nom_utilisateur = ""
 
-    # Tant que l'utilisateur n'a pas entré de nom d'utilisateur
-    # ou que le nom d'utilisateur contient un `;`, on redemande
-    # un nom d'utilisateur.
+    # Tant que l'utilisateur n'a pas entré de nom d'utilisateur,
+    # on redemande un nom d'utilisateur.
     while nom_utilisateur == "":
         effacer_ecran()
         faire_titre("Nom d'utilisateur du Joueur : " + str(index))
