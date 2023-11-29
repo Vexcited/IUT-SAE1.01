@@ -1,6 +1,6 @@
 from utils.afficher_tour import afficher_tour
 from utils.centrer import centrer
-from os import get_terminal_size
+from utils.titre import centrer_couleur
 
 def afficher_p4(jeu:list[list[str]])->None:
     """
@@ -10,31 +10,17 @@ def afficher_p4(jeu:list[list[str]])->None:
     i : int
     j : int
     ligne : str
-    # On crée une chaîne SANS les couleurs pour calculer la taille de la ligne.
-    raw_ligne : str
-    # `pad` et `lpad` sont les espacements à gauche pour centrer le jeu en fonction de `raw_ligne`.
-    pad : int
-    lpad : int
-    # On récupère la taille du terminal pour centrer le jeu.
-    terminal_colonne: int
-    terminal_colonne = get_terminal_size().columns
 
     print(centrer("\u256D\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u256E"))
     for i in range(0, 6):
         ligne = "\u2502 "
-        raw_ligne = "\u2502 "
 
         for j in range(0, 7):
             ligne += jeu[i][j] + " "
-            raw_ligne += "0 "
 
         ligne += "\u2502 "
-        raw_ligne += "\u2502 "
 
-        # On calcule manuellement l'espacement pour centrer le jeu
-        pad = max(0, terminal_colonne - len(raw_ligne))
-        lpad = (pad + 1) // 2
-        print(lpad * " " + ligne) 
+        print(centrer_couleur(ligne))
     print(centrer("\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518"))
 
 

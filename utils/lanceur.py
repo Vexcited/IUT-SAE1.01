@@ -3,7 +3,7 @@ from scores.fichier import scoresPourJeu
 from scores.entrée import EntréeScore, EntréePointsUtilisateur
 from scores.points import pointsParUtilisateur, trierPoints
 from utils.effacer_ecran import effacer_ecran
-from utils.titre import faire_titre, centrer_avec_bordures, séparateur_avec_bordures_vers_haut
+from utils.titre import faire_titre, centrer_avec_bordures, séparateur_avec_bordures_vers_haut, centrer_couleur_avec_bordures
 
 from jeux.devinette import main_devinette
 
@@ -26,6 +26,9 @@ def préJeu(type_jeu: str) -> None:
     nom_joueur_1: str
     nom_joueur_2: str
     scores: list[EntréeScore]
+    entrée: EntréePointsUtilisateur
+    entrée_index: int
+    nom_utilisateur: str
     scores_par_utilisateur: list[EntréePointsUtilisateur]
 
     premier_lancement = True
@@ -46,8 +49,10 @@ def préJeu(type_jeu: str) -> None:
                 sep="\n"
             )
         else:
-            for entrée in scores_par_utilisateur:
-                print(entrée.points, entrée.nom_utilisateur, str(entrée.nombre_parties) + " parties jouées", sep="\t")
+            for entrée_index in range(len(scores_par_utilisateur)):
+                entrée = scores_par_utilisateur[entrée_index]
+                nom_utilisateur = "\033[1;33m" + entrée.nom_utilisateur + "\033[0m"
+                print(centrer_couleur_avec_bordures(nom_utilisateur + "    " + str(entrée.points) + " | " + str(entrée.nombre_parties) + " partie(s) jouée(s)"))
         
         print(séparateur_avec_bordures_vers_haut())
         

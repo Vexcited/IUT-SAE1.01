@@ -1,5 +1,7 @@
 from getpass import getpass
 from utils.afficher_tour import afficher_tour
+from scores.entrée import EntréeScore
+from scores.fichier import écrireScore
 
 def calcul_score(nombre_tour : int) -> int:
     """
@@ -7,7 +9,8 @@ def calcul_score(nombre_tour : int) -> int:
     """
 
     score : int
-    score = int(100 * (1 / nombre_tour))
+    score = int(1000 // (nombre_tour ** 2))
+    
     return score
 
 
@@ -24,14 +27,18 @@ def main_devinette(joueur1: str, joueur2: str) -> None:
     nombre_tour : int
     jeu_en_cours : bool
     triche: bool
-    score : int
+    score : EntréeScore
 
     min = 1
     max = 100 # On défini la limite du nombre mystère
     nombre_tour = 1
+    réponse = ""
     jeu_en_cours = True
     triche = False
-    score = 0
+    score = EntréeScore()
+    score.perdant = joueur1
+    score.vainqueur = joueur2
+    score.type_jeu = "devinette"
 
     # On demande au joueur 1 de sélectionner le nombre mystère
     # que le joueur 2 devra trouver entre 1 et 100
@@ -46,8 +53,9 @@ def main_devinette(joueur1: str, joueur2: str) -> None:
         while not proposition <= max and proposition >= min:
             proposition = int(input("\n" + joueur2 + ", votre proposition dois être entre " + str(min) + " et " + str(max) + " : "))
         
-        # On utilise .strip pour enlever les espaces avant et après la réponse.
-        réponse = input("\n" + joueur1 + ", votre réponse (répondez par 'trop petit', 'trop grand' ou 'c'est gagné') : ").strip().lower()
+        while réponse != "trop petit" and réponse != "trop grand" and réponse != "c'est gagné":
+            # On utilise .strip pour enlever les espaces avant et après la réponse.
+            réponse = input("\n" + joueur1 + ", votre réponse (répondez par 'trop petit', 'trop grand' ou 'c'est gagné') : ").strip().lower()
         
         # ANTI-CHEAT
         if réponse == "trop petit" and not proposition < nombre_mystère :
@@ -72,16 +80,19 @@ def main_devinette(joueur1: str, joueur2: str) -> None:
                 jeu_en_cours = False
         
         nombre_tour += 1
+        réponse = ""
 
     if (triche):
         print("\n" + joueur1 + ", vous avez triché !")
         print(joueur2 + ", vous avez gagné mais aucun point ne vous est attribué.")
     else:
-        score = calcul_score(nombre_tour)
-        print("\n" + joueur2 + ", vous avez trouvé le nombre mystère en " + str(nombre_tour) + " tours !")
-        print("Votre score est de " + str(score) + " points !")
+        score.points = calcul_score(nombre_tour)
+        écrireScore(score)
 
-        input("\nAppuyez sur Entrée pour continuer...") 
+        print("\n" + joueur2 + ", vous avez trouvé le nombre mystère en " + str(nombre_tour) + " tours !")
+        print("Votre score est de " + str(score.points) + " points !")
+
+    input("\nAppuyez sur Entrée pour continuer...") 
 
 if __name__ == "__main__":
     main_devinette("Joueur1", "Joueur2")
