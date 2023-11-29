@@ -18,10 +18,3 @@ class EntréePointsUtilisateur:
     """Le nombre de points de l'utilisateur cumulés."""
     nombre_parties: int
     """Le nombre de parties jouées par l'utilisateur."""
-
-def entréeScoreEnChaîne(entrée: EntréeScore) -> str:
-    """
-    Retourne une chaîne de caractères représentant l'entrée de score.
-    Utilisée pour faciliter l'écriture dans le fichier.
-    """
-    return entrée.type_jeu + ";" + entrée.vainqueur + ";" + entrée.perdant + ";" + str(entrée.points)

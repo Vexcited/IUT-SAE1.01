@@ -1,65 +1,49 @@
-from typing import TextIO
+from typing import BinaryIO
+import pickle
 import os
 
-from scores.entrée import EntréeScore, entréeScoreEnChaîne
+from scores.entrée import EntréeScore
 
 def lireScores() -> list[EntréeScore]:
-    """Retourne une liste des scores enregistrés dans le fichier `scores.dat`."""
-    fichier         : TextIO
-    ligne           : str
-    valeurs_ligne   : list[str]
+    """Retourne une liste des scores enregistrés dans le fichier `scores.bin`."""
+    fichier         : BinaryIO
+    fdf             : bool
     entrée_actuelle : EntréeScore
     scores          : list[EntréeScore]
 
-    # On vérifie que le fichier `scores.dat` existe.
+    # On vérifie que le fichier `scores.bin` existe.
     # Si le fichier n'existe pas, on le crée.
-    if not os.path.exists("scores/scores.dat"):
-        fichier = open("scores/scores.dat", "w")
+    if not os.path.exists("scores/scores.bin"):
+        fichier = open("scores/scores.bin", "wb")
         fichier.close()
     
-    # Ouvre le fichier `scores.dat` en lecture
+    # Ouvre le fichier `scores.bin` en lecture
     # dans le dossier `scores` à la racine du projet.
-    fichier = open("scores/scores.dat", "r")
-    # On lit la première ligne.
-    ligne = fichier.readline()
+    fichier = open("scores/scores.bin", "rb")
+    fdf = False
 
     # On initialise la liste des scores.
     scores = []
     
-    # Chaque ligne est constituée de 4 valeurs séparées par des points-virgules
-    #   -> Raison pour laquelle l'utilisateur ne peut pas utiliser ce caractère dans son nom d'utilisateur.
-    # La première valeur est le type de jeu joué.
-    # La deuxième valeur est le nom d'utilisateur du vainqueur.
-    # La troisième valeur est le nom d'utilisateur du perdant.
-    # La quatrième valeur est le nombre de points gagnés par le vainqueur.
-    while ligne != "":
-        valeurs_ligne = ligne.split(";")
-        
-        # On rentre les valeurs dans une entrée de score.
-        entrée_actuelle = EntréeScore()
-        entrée_actuelle.type_jeu = valeurs_ligne[0]
-        entrée_actuelle.vainqueur = valeurs_ligne[1]
-        entrée_actuelle.perdant = valeurs_ligne[2]
-        entrée_actuelle.points = int(valeurs_ligne[3])
-
-        # On ajoute l'entrée de score à la liste des scores.
-        scores.append(entrée_actuelle)
-
-        # On lit la ligne suivante
-        # afin de ne pas rester bloqué dans la boucle.
-        ligne = fichier.readline()
+    while not fdf:
+        try:
+            # On rentre les valeurs dans une entrée de score.
+            entrée_actuelle = pickle.load(fichier)
+            scores.append(entrée_actuelle)
+        except EOFError:
+            fdf = True
 
     fichier.close()
     return scores
 
 def écrireScore(entrée: EntréeScore):
-    """Écrit l'entrée de score dans le fichier `scores.dat`"""
-    fichier: TextIO
+    """Écrit l'entrée de score dans le fichier `scores.bin`"""
+    fichier: BinaryIO
 
-    # On ouvre le fichier `scores.dat` en mode ajout.
-    fichier = open("scores/scores.dat", "a")
+    # On ouvre le fichier `scores.bin` en mode ajout.
+    fichier = open("scores/scores.bin", "ab")
     # On écrit l'entrée de score dans le fichier.
-    fichier.write(entréeScoreEnChaîne(entrée) + "\n")
+    pickle.dump(entrée, fichier)
     fichier.close()
 
 def scoresPourJeu(type_jeu: str) -> list[EntréeScore]:

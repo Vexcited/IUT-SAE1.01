@@ -3,3 +3,4 @@ __pycache__
 
 # Fichier où sont stockés les scores.
 scores.dat
+scores.bin
