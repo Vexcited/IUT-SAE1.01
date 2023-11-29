@@ -76,7 +76,6 @@ def main_devinette(joueur1: str, joueur2: str) -> None:
             if réponse == "trop grand":
                 max = proposition - 1
             if réponse == "c'est gagné":
-                # ajouter les scores au joueur 2
                 jeu_en_cours = False
         
         nombre_tour += 1
@@ -94,5 +93,6 @@ def main_devinette(joueur1: str, joueur2: str) -> None:
 
     input("\nAppuyez sur Entrée pour continuer...") 
 
+# Permet de tester le programme en démarrant seulement ce module.
 if __name__ == "__main__":
-    main_devinette("Joueur1", "Joueur2")
+    main_devinette("Mikkel", "Maxime")
