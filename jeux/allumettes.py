@@ -2,17 +2,19 @@ from utils.afficher_tour import afficher_tour
 from utils.centrer import centrer
 
 def afficher_allumettes(nb_allumettes : int)->None:
-    """Procédure qui permet d'afficher le nombre d'allumettes restant en jeu
-        entrée : nb_allumettes, un entier
-        sortie : rien
+    """
+    Procédure qui permet d'afficher le nombre d'allumettes restant en jeu
+    Entrée : nb_allumettes, un entier
     """
     print("")
     print(centrer("O " * nb_allumettes))
-    print(centrer("| " * nb_allumettes))
-    print(centrer("| " * nb_allumettes))
-    print(centrer("| " * nb_allumettes))
+    print(centrer("│ " * nb_allumettes))
+    print(centrer("│ " * nb_allumettes))
+    print(centrer("│ " * nb_allumettes))
+    print("")
 
-def tour(nb_tour: int, joueur: int, nb_allumettes: int)->int:
+
+def tour(joueur: str, nb_tour: int, nb_allumettes: int)->int:
     """Fonction qui déroule le tour d'un joueur
         entrée :    nb_tour, un entier: le nombre du tour actuel
                     joueur, un entier: le numéros du joueur
@@ -26,7 +28,7 @@ def tour(nb_tour: int, joueur: int, nb_allumettes: int)->int:
 
     afficher_allumettes(nb_allumettes)
 
-    choix_allumettes = int(input("\nJoueur " + str(joueur) + " : Combien d'allumettes voulez vous retirer du jeu ? (1, 2 ou 3) : "))
+    choix_allumettes = int(input(joueur + " : Combien d'allumettes voulez vous retirer du jeu ? (1, 2 ou 3) : "))
 
     if choix_allumettes >= nb_allumettes:
         print("\nJoueur", joueur, "a perdu !")
@@ -35,15 +37,14 @@ def tour(nb_tour: int, joueur: int, nb_allumettes: int)->int:
         return -1
 
     while choix_allumettes not in (1, 2, 3):
-        choix_allumettes = int(input("\nJoueur " + str(joueur) + " : Le nombre d'allumettes à retirer du jeu dois être 1, 2 ou 3 ! : "))
-
+        choix_allumettes = int(input(joueur + " : Le nombre d'allumettes à retirer du jeu dois être 1, 2 ou 3 ! : "))
 
     return nb_allumettes - choix_allumettes
 
-
-
-def main_allumettes()->None:
-    """Procédure de point d'entrée pour le jeu d'allumettes"""
+def main_allumettes(joueur1: str, joueur2: str) -> None:
+    """
+    Procédure de point d'entrée pour le jeu d'allumettes.
+    """
 
     en_cours : bool
     nb_allumettes : int
@@ -58,7 +59,10 @@ def main_allumettes()->None:
     while en_cours:
         # TOUR DU JOUEUR 
 
-        nb_allumettes = tour(nb_tour, ((nb_tour+1) % 2)+1, nb_allumettes)
+        if nb_tour % 2 == 1:
+            nb_allumettes = tour(joueur1, nb_tour, nb_allumettes)
+        else:
+            nb_allumettes = tour(joueur2, nb_tour, nb_allumettes)
 
         if nb_allumettes == -1:
             en_cours = False
@@ -67,5 +71,6 @@ def main_allumettes()->None:
         # fin de tour
         nb_tour += 1
 
+# Permet de tester le programme en démarrant seulement ce module.
 if __name__ == "__main__":
-    main_allumettes()
+    main_allumettes("Mikkel", "Maxime")
