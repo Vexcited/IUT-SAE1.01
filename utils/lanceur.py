@@ -6,6 +6,7 @@ from utils.effacer_ecran import effacer_ecran
 from utils.titre import faire_titre, centrer_avec_bordures, séparateur_avec_bordures_vers_haut, centrer_couleur_avec_bordures
 
 from jeux.devinette import main_devinette
+from jeux.allumettes import main_allumettes
 
 def préJeu(type_jeu: str) -> None:
     """
@@ -51,7 +52,16 @@ def préJeu(type_jeu: str) -> None:
         else:
             for entrée_index in range(len(scores_par_utilisateur)):
                 entrée = scores_par_utilisateur[entrée_index]
-                nom_utilisateur = "\033[1;33m" + entrée.nom_utilisateur + "\033[0m"
+                nom_utilisateur = entrée.nom_utilisateur + "\033[0m"
+
+                # On ajoute des couleurs sur les trois premiers.
+                if entrée_index == 0:
+                    nom_utilisateur = "\033[1;33m" + nom_utilisateur
+                elif entrée_index == 1:
+                    nom_utilisateur = "\033[0;37m" + nom_utilisateur
+                elif entrée_index == 2:
+                    nom_utilisateur = "\033[0;33m" + nom_utilisateur
+
                 print(centrer_couleur_avec_bordures(nom_utilisateur + "    " + str(entrée.points) + " | " + str(entrée.nombre_parties) + " partie(s) jouée(s)"))
         
         print(séparateur_avec_bordures_vers_haut())
@@ -81,6 +91,8 @@ def préJeu(type_jeu: str) -> None:
             effacer_ecran()
             if type_jeu == "devinette":
                 main_devinette(nom_joueur_1, nom_joueur_2)
+            elif type_jeu == "allumettes":
+                main_allumettes(nom_joueur_1, nom_joueur_2)
 
             # Une fois que le jeu a été joué,
             # on dit qu'il a déjà été lancé au moins une fois.
