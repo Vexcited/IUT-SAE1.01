@@ -28,7 +28,7 @@ def lireScores() -> list[EntréeScore]:
     while not fdf:
         try:
             # On rentre les valeurs dans une entrée de score.
-            entrée_actuelle = pickle.load(fichier)
+            entrée_actuelle = pickle.load(fichier, encoding="utf-8")
             scores.append(entrée_actuelle)
         except EOFError:
             fdf = True
