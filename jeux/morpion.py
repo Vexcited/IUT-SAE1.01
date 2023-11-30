@@ -172,8 +172,8 @@ def main_morpion(joueur1: str, joueur2: str) -> None:
 
     if (not égalité):
         # On remplie le score.
-        score.vainqueur = adversaire_actuel
-        score.perdant   = joueur_actuel
+        score.vainqueur = joueur_actuel
+        score.perdant   = adversaire_actuel
         score.points    = calcul_points(nb_tour)
         # On ajoute le score dans le fichier binaire.
         écrireScore(score)
