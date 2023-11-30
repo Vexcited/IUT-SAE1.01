@@ -50,6 +50,9 @@ def main_devinette(joueur1: str, joueur2: str) -> None:
     # que le joueur 2 devra trouver entre 1 et 100
     nombre_mystère = int(getpass(joueur1 + ", choisissez le nombre mystère (entre 1 et 100) que " + joueur2 + " devra trouver: "))
 
+    while not (1 <= nombre_mystère <= 100):
+        nombre_mystère = int(getpass(joueur1 + ", choisissez le nombre mystère (entre 1 et 100) que " + joueur2 + " devra trouver: "))
+
     while jeu_en_cours:
         afficher_tour(nombre_tour)
 
