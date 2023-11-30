@@ -16,8 +16,8 @@ def calcul_points(nombre_tour : int) -> int:
 
 def main_devinette(joueur1: str, joueur2: str) -> None:
     """
-    Fonction qui sert de point d'entrée pour le lanceur.
-    C'est la fonction principale du jeu devinette.
+    Procédure qui sert de point d'entrée pour le lanceur.
+    C'est la procédure principale du jeu devinette.
 
     ## Entrée :
 
