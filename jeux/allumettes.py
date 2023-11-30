@@ -1,76 +1,142 @@
 from utils.afficher_tour import afficher_tour
+from utils.effacer_ecran import effacer_ecran
+from utils.titre import séparateur_avec_titre
 from utils.centrer import centrer
+from scores.entrée import EntréeScore
+from scores.fichier import écrireScore
 
-def afficher_allumettes(nb_allumettes : int)->None:
+def calcul_points(nombre_tour : int) -> int:
     """
-    Procédure qui permet d'afficher le nombre d'allumettes restant en jeu
-    Entrée : nb_allumettes, un entier
+    Calcule le points du joueur 2 en fonction du nombre de tours.
     """
-    print("")
+
+    points : int
+    points = int(1000 // (nombre_tour ** 2))
+    
+    return points
+
+def afficher_allumettes(nb_allumettes : int) -> None:
+    """
+    Procédure qui permet d'afficher le nombre d'allumettes restantes en jeu.
+    On ajoute un saut de ligne avant et après les allumettes pour espacer
+    le jeu des autres éléments affichés à l'écran.
+
+    ## Entrée :
+    
+    - `nb_allumettes`, un entier, qui représente le nombre d'allumettes que l'on va afficher.
+    """
+
+    print("") # Saut de ligne
     print(centrer("O " * nb_allumettes))
     print(centrer("│ " * nb_allumettes))
     print(centrer("│ " * nb_allumettes))
     print(centrer("│ " * nb_allumettes))
-    print("")
+    print("") # Saut de ligne
 
 
-def tour(joueur: str, nb_tour: int, nb_allumettes: int)->int:
-    """Fonction qui déroule le tour d'un joueur
-        entrée :    nb_tour, un entier: le nombre du tour actuel
-                    joueur, un entier: le numéros du joueur
-                    nb_allumettes, un entier: le nombre d'allumettes encore en jeu
-        sortie :    nb_allumettes, un entier: le nombre d'allumettes encore en jeu
+def dérouler_tour(joueur: str, nb_tour: int, nb_allumettes: int) -> int:
+    """
+    Fonction qui déroule le tour d'un joueur.
+    1. On affiche le tour
+    2. On affiche les allumettes
+    3. On demande au joueur combien d'allumettes iel veut retirer
+    4. On traite la réponse donnée
+    
+    ## Entrée :
+    
+    - joueur, une chaîne, qui représente le nom du joueur qui est entrain de jouer.
+    - nb_tour, un entier, qui représente le nombre de tours actuel.
+                On commence la partie au "Tour 1", donc `nb_tour` sera 1.
+    - nb_allumettes, un entier: le nombre d'allumettes encore en jeu
+    
+    ## Sortie :
+
+    Un entier qui représente le nombre d'allumettes encore en jeu à la fin du tour.
+    Retourne `-1` dans le cas où la partie est terminée.
     """
     choix_allumettes : int
     
-    # Séparateurs
+    # On efface l'écran pour avoir un affichage
+    # plus propre des allumettes.
+    effacer_ecran()
     afficher_tour(nb_tour)
-
     afficher_allumettes(nb_allumettes)
 
-    choix_allumettes = int(input(joueur + " : Combien d'allumettes voulez vous retirer du jeu ? (1, 2 ou 3) : "))
+    choix_allumettes = int(input(joueur + " : Combien d'allumettes prenez-vous ? (1, 2 ou 3) : "))
 
+    # Lorsque l'on prend les allumettes qui restent,
+    # on perd la partie.
     if choix_allumettes >= nb_allumettes:
-        print("\nJoueur", joueur, "a perdu !")
-
-        # signal de fin de jeu
+        # On renvoie le signal de fin de jeu.
         return -1
 
-    while choix_allumettes not in (1, 2, 3):
-        choix_allumettes = int(input(joueur + " : Le nombre d'allumettes à retirer du jeu dois être 1, 2 ou 3 ! : "))
+    # On vérifie que le joueur a bien entré un nombre d'allumettes valide.
+    while choix_allumettes not in [1, 2, 3]:
+        choix_allumettes = int(input(joueur + " : Le nombre d'allumettes à retirer du jeu doit être 1, 2 ou 3 ! : "))
 
+    # On retourne le nombre d'allumettes restantes.
     return nb_allumettes - choix_allumettes
 
 def main_allumettes(joueur1: str, joueur2: str) -> None:
     """
-    Procédure de point d'entrée pour le jeu d'allumettes.
+    Fonction qui sert de point d'entrée pour le lanceur.
+    C'est la fonction principale du jeu d'allumettes.
+
+    Le jeu commence au tour 1 avec 20 allumettes.
+    C'est `joueur1` qui commence la partie.
+
+    ## Entrée :
+
+    - `joueur1`, une chaîne, qui représente le nom d'utilisateur du joueur 1.
+    - `joueur2`, une chaîne, qui représente le nom d'utilisateur du joueur 2.
     """
 
-    en_cours : bool
+    jeu_en_cours  : bool
+    nb_tour       : int
     nb_allumettes : int
-    nb_tour : int
+    joueur_actuel : str
+    adversaire_actuel : str
+    score         : EntréeScore
 
-    en_cours = True
+    jeu_en_cours = True
+    # On commence au tour 1.
     nb_tour = 1
-
-    # Nombre d'allumettes au début du jeu
+    # Le nombre d'allumettes avec lequel on commence.
     nb_allumettes = 20
+    score = EntréeScore()
+    score.type_jeu = "allumettes"
 
-    while en_cours:
-        # TOUR DU JOUEUR 
+    # Au début du jeu, on est au tour 1.
+    joueur_actuel     = joueur1
+    adversaire_actuel = joueur2
 
+    while jeu_en_cours:
+        # On récupère le nom du joueur qui doit jouer.
         if nb_tour % 2 == 1:
-            nb_allumettes = tour(joueur1, nb_tour, nb_allumettes)
+            joueur_actuel     = joueur1
+            adversaire_actuel = joueur2
         else:
-            nb_allumettes = tour(joueur2, nb_tour, nb_allumettes)
+            joueur_actuel     = joueur2
+            adversaire_actuel = joueur1
+        
+        # On lui demande de jouer.
+        nb_allumettes = dérouler_tour(joueur_actuel, nb_tour, nb_allumettes)
 
+        # Si la partie est terminée.
         if nb_allumettes == -1:
-            en_cours = False
-            #ajouter les scores au joueur
+            jeu_en_cours    = False
+            score.vainqueur = adversaire_actuel
+            score.perdant   = joueur_actuel
+            score.points    = calcul_points(nb_tour)
+            # On ajoute le score dans le fichier binaire.
+            écrireScore(score)
 
-        # fin de tour
+        # On passe au prochain tour.
         nb_tour += 1
 
-# Permet de tester le programme en démarrant seulement ce module.
-if __name__ == "__main__":
-    main_allumettes("Mikkel", "Maxime")
+    print("\n" + séparateur_avec_titre("FIN") + "\n")
+    print(centrer(adversaire_actuel + " a gagné et remporte " + str(score.points) + " points !"))
+    print(centrer(joueur_actuel + " a perdu."))
+
+    # Permet d'éviter de revenir directement au lanceur.
+    input("\nAppuyez sur Entrée pour continuer...")
