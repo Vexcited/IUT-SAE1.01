@@ -59,7 +59,7 @@ def main_devinette(joueur1: str, joueur2: str) -> None:
         # Proposition
         proposition = int(input("\n" + joueur2 + ", veuillez choisir un nombre entre " + str(min) + " et " + str(max) + " : "))
         # Si on donne une proposition en dehors des limites, on redemande une proposition.
-        while not proposition <= max and proposition >= min:
+        while not (proposition <= max and proposition >= min):
             proposition = int(input("\n" + joueur2 + ", votre proposition dois être entre " + str(min) + " et " + str(max) + " : "))
         
         while réponse != "trop petit" and réponse != "trop grand" and réponse != "c'est gagné":
