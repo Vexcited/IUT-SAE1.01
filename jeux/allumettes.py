@@ -11,7 +11,7 @@ def calcul_points(nombre_tour : int) -> int:
     """
 
     points : int
-    points = int(1000 // (nombre_tour ** 2))
+    points = 50
     
     return points
 
