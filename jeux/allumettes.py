@@ -1,6 +1,7 @@
 from utils.afficher_tour import afficher_tour
 from utils.effacer_ecran import effacer_ecran
 from utils.titre import séparateur_avec_titre
+from utils.input import demanderEntier
 from utils.centrer import centrer
 from scores.entrée import EntréeScore
 from scores.fichier import écrireScore
@@ -52,7 +53,7 @@ def dérouler_tour(joueur: str, nb_tour: int, nb_allumettes: int) -> int:
     afficher_tour(nb_tour)
     afficher_allumettes(nb_allumettes)
 
-    choix_allumettes = int(input(joueur + " : Combien d'allumettes prenez-vous ? (1, 2 ou 3) : "))
+    choix_allumettes = demanderEntier(joueur + " : Combien d'allumettes prenez-vous ? (1, 2 ou 3) : ")
 
     # Lorsque l'on prend les allumettes qui restent,
     # on perd la partie.
@@ -62,7 +63,7 @@ def dérouler_tour(joueur: str, nb_tour: int, nb_allumettes: int) -> int:
 
     # On vérifie que le joueur a bien entré un nombre d'allumettes valide.
     while choix_allumettes not in [1, 2, 3]:
-        choix_allumettes = int(input(joueur + " : Le nombre d'allumettes à retirer du jeu doit être 1, 2 ou 3 ! : "))
+        choix_allumettes = demanderEntier(joueur + " : Le nombre d'allumettes à retirer du jeu doit être 1, 2 ou 3 ! : ")
 
     # On retourne le nombre d'allumettes restantes.
     return nb_allumettes - choix_allumettes

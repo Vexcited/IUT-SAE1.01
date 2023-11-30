@@ -77,7 +77,8 @@ def préJeu(type_jeu: str) -> None:
             else:
                 print("\nVoulez-vous rejouer ?\n")
 
-            print("\t1 │ Oui", "\t0 │ Non, revenir au menu principal", sep="\n")
+            print("\t1 │ Oui")
+            print("\t0 │ Non, revenir au menu principal")
             sélection = input("\n-> Sélection(1,0) : ").strip()
             
             if sélection != "1" and sélection != "0":

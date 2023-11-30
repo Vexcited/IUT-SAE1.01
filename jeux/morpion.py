@@ -1,5 +1,6 @@
 from utils.afficher_tour import afficher_tour
 from utils.effacer_ecran import effacer_ecran
+from utils.input import demanderEntier
 from utils.couleurs import gris_foncé_re, jaune_re, rouge_clair_re, couleur_joueur
 from utils.titre import centrer_couleur, séparateur_avec_titre
 from scores.entrée import EntréeScore
@@ -113,11 +114,11 @@ def main_morpion(joueur1: str, joueur2: str) -> None:
         afficher_tour(nb_tour)
         afficher_morpion(morpion)
 
-        choix = int(input(couleur_joueur(joueur_actuel, joueur1, joueur2) + ", veuillez choisir une case : "))
+        choix = demanderEntier(couleur_joueur(joueur_actuel, joueur1, joueur2) + ", veuillez choisir une case : ")
 
         # Si la case choisie est déjà remplie, on redemande.
         while estRemplie(morpion[choix // 3][choix % 3]):
-            choix = int(input(couleur_joueur(joueur_actuel, joueur1, joueur2) + ", veuillez choisir une case non vide : "))
+            choix = demanderEntier(couleur_joueur(joueur_actuel, joueur1, joueur2) + ", veuillez choisir une case non vide : ")
 
         if joueur_actuel == joueur1:
             morpion[choix // 3][choix % 3] = "O"

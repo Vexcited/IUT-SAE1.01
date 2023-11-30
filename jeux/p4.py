@@ -1,5 +1,6 @@
 from utils.afficher_tour import afficher_tour
 from utils.titre import centrer_couleur, séparateur_avec_titre
+from utils.input import demanderEntier
 from utils.effacer_ecran import effacer_ecran
 from utils.couleurs import réinitialisation_couleur, jaune, rouge_clair, couleur_joueur, gris_foncé_re
 from scores.entrée import EntréeScore
@@ -83,10 +84,10 @@ def dérouler_tour(joueur_actuel: str, joueur1: str, jeu: list[list[str]], colon
         couleur = rouge_clair("")
 
     # On demande au joueur de choisir une colonne.
-    choix = int(input(réinitialisation_couleur(couleur + joueur_actuel) + ", choisissez une colonne : "))
+    choix = demanderEntier(réinitialisation_couleur(couleur + joueur_actuel) + ", choisissez une colonne : ")
 
     while choix not in colonne_restantes :
-        choix = int(input(réinitialisation_couleur(couleur + joueur_actuel) + ", choisissez une colonne encore disponible : "))
+        choix = demanderEntier(réinitialisation_couleur(couleur + joueur_actuel) + ", choisissez une colonne encore disponible : ")
 
     # Test pour savoir a quel endroit de la colonne choisie le pion dois se mettre
     if jeu[5][choix-1] == '.':
