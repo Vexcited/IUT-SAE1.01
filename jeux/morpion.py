@@ -5,16 +5,6 @@ from utils.titre import centrer_couleur, séparateur_avec_titre
 from scores.entrée import EntréeScore
 from scores.fichier import écrireScore
 
-def calcul_points(nombre_tour : int) -> int:
-    """
-    Calcule les points en fonction du nombre de tours.
-    """
-
-    points : int
-    points = 50
-    
-    return points
-
 def afficher_morpion(morpion : list[list[str]]) -> None:
     """
     Procédure qui affiche proprement le morpion
@@ -174,7 +164,7 @@ def main_morpion(joueur1: str, joueur2: str) -> None:
         # On remplie le score.
         score.vainqueur = joueur_actuel
         score.perdant   = adversaire_actuel
-        score.points    = calcul_points(nb_tour)
+        score.points    = 50
         # On ajoute le score dans le fichier binaire.
         écrireScore(score)
 
