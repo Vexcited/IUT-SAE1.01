@@ -87,6 +87,10 @@ def préJeu(type_jeu: str) -> None:
             # On demande le nom d'utilisateur de chaque joueur.
             nom_joueur_1 = définir_nom_joueur(1)
             nom_joueur_2 = définir_nom_joueur(2)
+            
+            # Le joueur 2 ne doit pas avoir le même nom que le joueur 1.
+            while (nom_joueur_2 == nom_joueur_1):
+                nom_joueur_2 = définir_nom_joueur(2, True)
 
             # On lance le jeu.
             effacer_ecran()
