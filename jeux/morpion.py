@@ -1,6 +1,6 @@
 from utils.afficher_tour import afficher_tour
 from utils.effacer_ecran import effacer_ecran
-from utils.couleurs import gris_foncé, jaune, rouge_clair, couleur_joueur
+from utils.couleurs import gris_foncé_re, jaune_re, rouge_clair_re, couleur_joueur
 from utils.titre import centrer_couleur, séparateur_avec_titre
 from scores.entrée import EntréeScore
 from scores.fichier import écrireScore
@@ -42,13 +42,13 @@ def afficher_morpion(morpion : list[list[str]]) -> None:
             # On va alors la griser pour montrer qu'elle peut être
             # sélectionné avec le nombre qu'elle contient.
             if (case_actuelle != "X" and case_actuelle != "O"):
-                ligne += gris_foncé(case_actuelle)
+                ligne += gris_foncé_re(case_actuelle)
             # O: Joueur 1
             elif (case_actuelle == "O"):
-                ligne += jaune(case_actuelle)
+                ligne += jaune_re(case_actuelle)
             # X: Joueur 2
             elif (case_actuelle == "X"):
-                ligne += rouge_clair(case_actuelle)
+                ligne += rouge_clair_re(case_actuelle)
 
             # On n'ajoute pas le séparateur à la fin.
             if case_index != 2:
@@ -80,9 +80,10 @@ def main_morpion(joueur1: str, joueur2: str) -> None:
     - `joueur1`, une chaîne, qui représente le nom d'utilisateur du joueur 1.
     - `joueur2`, une chaîne, qui représente le nom d'utilisateur du joueur 2.
     """
-    nb_tour : int
+
     jeu_en_cours : bool
     égalité : bool
+    nb_tour : int
     morpion : list[list[str]]
     choix : int
     joueur_actuel     : str

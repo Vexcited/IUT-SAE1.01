@@ -8,6 +8,7 @@ from utils.titre import faire_titre, centrer_avec_bordures, séparateur_avec_bor
 from jeux.devinette import main_devinette
 from jeux.allumettes import main_allumettes
 from jeux.morpion import main_morpion
+from jeux.p4 import main_p4
 
 def préJeu(type_jeu: str) -> None:
     """
@@ -100,6 +101,8 @@ def préJeu(type_jeu: str) -> None:
                 main_allumettes(nom_joueur_1, nom_joueur_2)
             elif type_jeu == "morpion":
                 main_morpion(nom_joueur_1, nom_joueur_2)
+            elif type_jeu == "puissance_4":
+                main_p4(nom_joueur_1, nom_joueur_2)
 
             # Une fois que le jeu a été joué,
             # on dit qu'il a déjà été lancé au moins une fois.
