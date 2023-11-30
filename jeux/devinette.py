@@ -3,20 +3,26 @@ from utils.afficher_tour import afficher_tour
 from scores.entrée import EntréeScore
 from scores.fichier import écrireScore
 
-def calcul_score(nombre_tour : int) -> int:
+def calcul_points(nombre_tour : int) -> int:
     """
-    Calcule le score du joueur 2 en fonction du nombre de tours.
+    Calcule les points du joueur 2 en fonction du nombre de tours.
     """
 
-    score : int
-    score = int(1000 // (nombre_tour ** 2))
+    points : int
+    points = int(1000 // (nombre_tour ** 2))
     
-    return score
+    return points
 
 
 def main_devinette(joueur1: str, joueur2: str) -> None:
     """
-    Procédure de point d'entrée pour le jeu de devinette.
+    Fonction qui sert de point d'entrée pour le lanceur.
+    C'est la fonction principale du jeu devinette.
+
+    ## Entrée :
+
+    - `joueur1`, une chaîne, qui représente le nom d'utilisateur du joueur 1.
+    - `joueur2`, une chaîne, qui représente le nom d'utilisateur du joueur 2.
     """
 
     nombre_mystère : int
@@ -36,8 +42,8 @@ def main_devinette(joueur1: str, joueur2: str) -> None:
     jeu_en_cours = True
     triche = False
     score = EntréeScore()
-    score.perdant = joueur1
-    score.vainqueur = joueur2
+    score.perdant = joueur1 # Dans ce jeu, le joueur 1 est **toujours** le perdant.
+    score.vainqueur = joueur2 # Dans ce jeu, le joueur 2 est **toujours** le vainqueur.
     score.type_jeu = "devinette"
 
     # On demande au joueur 1 de sélectionner le nombre mystère
@@ -85,14 +91,11 @@ def main_devinette(joueur1: str, joueur2: str) -> None:
         print("\n" + joueur1 + ", vous avez triché !")
         print(joueur2 + ", vous avez gagné mais aucun point ne vous est attribué.")
     else:
-        score.points = calcul_score(nombre_tour)
+        score.points = calcul_points(nombre_tour)
         écrireScore(score)
 
         print("\n" + joueur2 + ", vous avez trouvé le nombre mystère en " + str(nombre_tour) + " tours !")
         print("Votre score est de " + str(score.points) + " points !")
 
-    input("\nAppuyez sur Entrée pour continuer...") 
-
-# Permet de tester le programme en démarrant seulement ce module.
-if __name__ == "__main__":
-    main_devinette("Mikkel", "Maxime")
+    # Permet d'éviter de revenir directement au lanceur.
+    input("\nAppuyez sur Entrée pour continuer...")
