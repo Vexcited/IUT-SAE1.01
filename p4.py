@@ -12,7 +12,7 @@ def afficher_p4(jeu:list[list[str]])->None:
     ligne : str
 
     print(centrer("\u256D\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u254C\u256E"))
-    for i in range(0, 6):
+    for i in range(6):
         ligne = "\u2502 "
 
         for j in range(0, 7):

@@ -21,7 +21,7 @@ def jaune(texte: str) -> str:
 def rouge_clair(texte: str) -> str:
     return réinitialisation_couleur("\033[1;31m" + texte)
 
-def couleur_joueur_actuel(joueur_actuel: str, joueur1: str, joueur2: str) -> str:
+def couleur_joueur(joueur_actuel: str, joueur1: str, joueur2: str) -> str:
     """
     On colorise le nom du joueur en fonction
     du joueur actuel.
