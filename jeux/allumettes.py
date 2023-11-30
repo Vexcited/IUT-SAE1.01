@@ -79,8 +79,8 @@ def dérouler_tour(joueur: str, nb_tour: int, nb_allumettes: int) -> int:
 
 def main_allumettes(joueur1: str, joueur2: str) -> None:
     """
-    Fonction qui sert de point d'entrée pour le lanceur.
-    C'est la fonction principale du jeu d'allumettes.
+    Procédure qui sert de point d'entrée pour le lanceur.
+    C'est la procédure principale du jeu d'allumettes.
 
     Le jeu commence au tour 1 avec 20 allumettes.
     C'est `joueur1` qui commence la partie.
@@ -91,16 +91,15 @@ def main_allumettes(joueur1: str, joueur2: str) -> None:
     - `joueur2`, une chaîne, qui représente le nom d'utilisateur du joueur 2.
     """
 
-    jeu_en_cours  : bool
-    nb_tour       : int
-    nb_allumettes : int
-    joueur_actuel : str
+    nb_tour           : int
+    nb_allumettes     : int
+    joueur_actuel     : str
     adversaire_actuel : str
-    score         : EntréeScore
+    score             : EntréeScore
 
-    jeu_en_cours = True
-    # On commence au tour 1.
-    nb_tour = 1
+    # On commence réellement au tour 1.
+    # Voir la boucle `while` en dessous.
+    nb_tour = 0
     # Le nombre d'allumettes avec lequel on commence.
     nb_allumettes = 20
     score = EntréeScore()
@@ -110,7 +109,9 @@ def main_allumettes(joueur1: str, joueur2: str) -> None:
     joueur_actuel     = joueur1
     adversaire_actuel = joueur2
 
-    while jeu_en_cours:
+    while nb_allumettes != -1:
+        nb_tour += 1
+        
         # On récupère le nom du joueur qui doit jouer.
         if nb_tour % 2 == 1:
             joueur_actuel     = joueur1
@@ -122,20 +123,16 @@ def main_allumettes(joueur1: str, joueur2: str) -> None:
         # On lui demande de jouer.
         nb_allumettes = dérouler_tour(joueur_actuel, nb_tour, nb_allumettes)
 
-        # Si la partie est terminée.
-        if nb_allumettes == -1:
-            jeu_en_cours    = False
-            score.vainqueur = adversaire_actuel
-            score.perdant   = joueur_actuel
-            score.points    = calcul_points(nb_tour)
-            # On ajoute le score dans le fichier binaire.
-            écrireScore(score)
+    # On remplie le score.
+    score.vainqueur = adversaire_actuel
+    score.perdant   = joueur_actuel
+    score.points    = calcul_points(nb_tour)
+    # On ajoute le score dans le fichier binaire.
+    écrireScore(score)
 
-        # On passe au prochain tour.
-        nb_tour += 1
-
+    # On affiche la fin de jeu.
     print("\n" + séparateur_avec_titre("FIN") + "\n")
-    print(centrer(adversaire_actuel + " a gagné et remporte " + str(score.points) + " points !"))
+    print(centrer(adversaire_actuel + " a gagné en " + str(nb_tour) + " tours et remporte " + str(score.points) + " points !"))
     print(centrer(joueur_actuel + " a perdu."))
 
     # Permet d'éviter de revenir directement au lanceur.
