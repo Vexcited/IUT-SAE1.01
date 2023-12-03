@@ -171,8 +171,8 @@ def main_morpion(joueur1: str, joueur2: str) -> None:
 
         # On affiche la fin de jeu.
         print(séparateur_avec_titre("FIN") + "\n")
-        print(centrer_couleur(couleur_joueur(adversaire_actuel, joueur1, joueur2) + " a gagné en " + str(nb_tour) + " tours et remporte " + str(score.points) + " points !"))
-        print(centrer_couleur(couleur_joueur(joueur_actuel, joueur1, joueur2) + " a perdu."))
+        print(centrer_couleur(couleur_joueur(joueur_actuel, joueur1, joueur2) + " a gagné en " + str(nb_tour) + " tours et remporte " + str(score.points) + " points !"))
+        print(centrer_couleur(couleur_joueur(adversaire_actuel, joueur1, joueur2) + " a perdu."))
     else:
         # On affiche la fin de jeu.
         print(séparateur_avec_titre("ÉGALITÉ") + "\n")
