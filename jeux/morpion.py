@@ -116,6 +116,10 @@ def main_morpion(joueur1: str, joueur2: str) -> None:
 
         choix = demanderEntier(couleur_joueur(joueur_actuel, joueur1, joueur2) + ", veuillez choisir une case : ")
 
+        # Si la case n'est pas dans la grille, on redemande.
+        while choix < 0 or choix > 8:
+            choix = demanderEntier(couleur_joueur(joueur_actuel, joueur1, joueur2) + ", veuillez choisir une case dans la grille : ")
+
         # Si la case choisie est déjà remplie, on redemande.
         while estRemplie(morpion[choix // 3][choix % 3]):
             choix = demanderEntier(couleur_joueur(joueur_actuel, joueur1, joueur2) + ", veuillez choisir une case non vide : ")
