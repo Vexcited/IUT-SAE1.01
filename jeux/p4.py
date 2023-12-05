@@ -36,7 +36,7 @@ def afficher_p4(jeu: list[list[str]], colonne_restantes: list[int]) -> None:
 
     print(centrer_couleur("╭╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╮"))
     for index_ligne in range(6):
-        ligne = "│ "
+        ligne = " │ "
 
         for index_case in range(7):
             ligne += jeu[index_ligne][index_case] + " "
