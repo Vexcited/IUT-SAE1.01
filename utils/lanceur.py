@@ -20,7 +20,8 @@ def préJeu(type_jeu: str) -> None:
 
     Permet en même temps de demander si 
 
-    Entrée : `type_jeu` peut être `"devinette"`, `"allumettes"`, `"morpion"` ou `"puissance_4"`.
+    ## Entrée :
+    - `type_jeu` peut être `"devinette"`, `"allumettes"`, `"morpion"` ou `"puissance_4"`.
     """
 
     premier_lancement: bool

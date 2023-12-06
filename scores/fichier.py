@@ -5,7 +5,13 @@ import os
 from scores.entrée import EntréeScore
 
 def lireScores() -> list[EntréeScore]:
-    """Retourne une liste des scores enregistrés dans le fichier `scores.bin`."""
+    """
+    Fonction qui lit les scores dans le fichier `scores.bin` et retourne la liste des
+    scores contenus dans celui-ci.
+  
+    ## Sortie :
+    Une liste des scores enregistrés (`list[EntréeScore]`) dans le fichier `scores.bin`.
+    """
     fichier         : BinaryIO
     fdf             : bool
     entrée_actuelle : EntréeScore
@@ -36,8 +42,13 @@ def lireScores() -> list[EntréeScore]:
     fichier.close()
     return scores
 
-def écrireScore(entrée: EntréeScore):
-    """Écrit l'entrée de score dans le fichier `scores.bin`"""
+def écrireScore(entrée: EntréeScore) -> None:
+    """
+    Procédure qui écrit une entrée de score dans le fichier `scores.bin`
+    
+    ## Entrée :
+    - `entrée` une instance de la classe `EntréeScore` qui représente une entrée de score que l'on veut ajouter dans le fichier des scores.
+    """
     fichier: BinaryIO
 
     # On ouvre le fichier `scores.bin` en mode ajout.
@@ -48,8 +59,10 @@ def écrireScore(entrée: EntréeScore):
 
 def scoresPourJeu(type_jeu: str) -> list[EntréeScore]:
     """
-    Retourne une liste des scores enregistrés pour un jeu donné.
-    Le type de jeu peut être `"devinette"`, `"allumettes"`, `"morpion"` ou `"puissance_4"`.
+    Fonction qui retourne une liste des scores enregistrés pour un jeu donné.
+
+    ## Entrée :
+    - `type_jeu` (str): Le type de jeu peut être `"devinette"`, `"allumettes"`, `"morpion"` ou `"puissance_4"`.
     """
     original_scores: list[EntréeScore]
     # Les scores qui nous intéressent vraiment.

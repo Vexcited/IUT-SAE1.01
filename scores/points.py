@@ -6,8 +6,11 @@ def pointsParUtilisateur(scores: list[EntréeScore]) -> list[EntréePointsUtilis
     Fonction qui transforme une liste d'entrées de score en une liste d'entrées de points par utilisateur.
     Elle permet de calculer les points cumulés par utilisateur.
 
-    Entrée : `scores` est une liste d'entrées de score.
-    Sortie : Une liste d'entrées de points par utilisateur.      
+    ## Entrée :
+    - `scores` est une liste d'entrées de score.
+    
+    ## Sortie :
+    Une liste d'entrées de points par utilisateur.      
     """
 
     scores_utilisateurs: list[EntréePointsUtilisateur]
@@ -49,8 +52,11 @@ def trierPoints(scores: list[EntréePointsUtilisateur]) -> list[EntréePointsUti
     Fonction qui trie une liste d'entrées de points par utilisateur
     par ordre décroissant de points cumulés.
 
-    Entrée : `scores` est une liste d'entrées de points par utilisateur.
-    Sortie : Une liste d'entrées de points par utilisateur triée par ordre décroissant de points cumulés.
+    ## Entrée :
+    - `scores` est une liste d'entrées de points par utilisateur.
+    
+    ## Sortie :
+    Une liste d'entrées de points par utilisateur triée par ordre décroissant de points cumulés.
     """
 
     scores_triés: list[EntréePointsUtilisateur]

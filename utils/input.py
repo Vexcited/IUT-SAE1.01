@@ -2,15 +2,17 @@ from getpass import getpass
 
 def demanderEntier(message: str, estCaché: bool = False) -> int:
     """
-    Demande un entier à l'utilisateur et le renvoie.
+    Demander un entier à l'utilisateur et le renvoie.
+    Renvoie `-1` si l'utilisateur ne saisit pas un entier.
 
-    ## Entrée:
-        message (str): Message à afficher à l'utilisateur.
-        estCaché (bool): Si `True`, le message sera caché à l'utilisateur, en utilisant "getpass".
+    ## Entrées :
+    - message (str): Message à afficher à l'utilisateur.
+    - estCaché (bool): Si `True`, le message sera caché à l'utilisateur, en utilisant "getpass".
         
-    ## Sortie:
-        int: Entier saisi par l'utilisateur.
-        Si l'utilisateur ne saisit pas un entier, la fonction retourne `-1`.
+    ## Sortie :
+    L'entier saisi par l'utilisateur.
+    Si l'utilisateur ne saisit pas un entier, la fonction retourne `-1`.
+    La valeur `-1` est donc à traiter comme une erreur, pour ensuite redemander l'entier à l'utilisateur.
     """
 
     valeur : int

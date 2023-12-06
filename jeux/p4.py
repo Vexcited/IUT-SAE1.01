@@ -8,7 +8,13 @@ from scores.fichier import écrireScore
 
 def calcul_points(nombre_tour : int) -> int:
     """
-    Calcule les points en fonction du nombre de tours.
+    Fonction qui calcule les points du joueur gagnant en fonction du nombre de tours.
+
+    ## Entrée :
+    - `nombre_tour`, un entier, qui représente le nombre de tours que le joueur a mis pour gagner.
+
+    ## Sortie :
+    Un entier qui représente le nombre de points que le joueur a gagné.
     """
 
     points : int

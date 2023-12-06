@@ -8,7 +8,13 @@ from utils.titre import centrer_couleur, séparateur_avec_titre
 
 def calcul_points(nombre_tour : int) -> int:
     """
-    Calcule les points du joueur 2 en fonction du nombre de tours.
+    Fonction qui calcule les points du joueur 2 en fonction du nombre de tours.
+
+    ## Entrée :
+    - `nombre_tour`, un entier, qui représente le nombre de tours que le joueur 2 a mis pour gagner.
+
+    ## Sortie :
+    Un entier qui représente le nombre de points que le joueur 2 a gagné.
     """
 
     points : int
@@ -22,7 +28,7 @@ def main_devinette(joueur1: str, joueur2: str) -> None:
     Procédure qui sert de point d'entrée pour le lanceur.
     C'est la procédure principale du jeu devinette.
 
-    ## Entrée :
+    ## Entrées :
 
     - `joueur1`, une chaîne, qui représente le nom d'utilisateur du joueur 1.
     - `joueur2`, une chaîne, qui représente le nom d'utilisateur du joueur 2.

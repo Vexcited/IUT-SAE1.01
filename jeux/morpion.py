@@ -8,10 +8,9 @@ from scores.fichier import écrireScore
 
 def afficher_morpion(morpion : list[list[str]]) -> None:
     """
-    Procédure qui affiche proprement le morpion
+    Procédure qui affiche proprement le morpionx.
     
     ## Entrée :
-    
     - `morpion`, une liste de listes de chaînes de caractères, qui représente le morpion.
     """
     ligne_index : int
@@ -56,6 +55,16 @@ def afficher_morpion(morpion : list[list[str]]) -> None:
     print("")
 
 def estRemplie(char: str) -> bool:
+    """
+    Fonction qui informe si une case est remplie ou non.
+    Une case est dite remplie lorsque son contenu est "X" ou "O".
+
+    ## Entrée :
+    - `char`, une chaîne de caractères, qui représente le contenu de la case.
+
+    ## Sortie :
+    Un booléen qui vaut `True` si la case est remplie, `False` sinon.
+    """
     return char in ["X", "O"]
 
 def main_morpion(joueur1: str, joueur2: str) -> None:
